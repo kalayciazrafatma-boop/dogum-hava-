@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dilşat Ablaya 58 Mumlu Pasta</title>
+    <title>Doğum Günün Kutlu Olsun</title>
+    <!-- Google Fonts: Şık yazı tipleri eklendi -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         /* --- GENEL AYARLAR --- */
         body {
             background: #000;
             margin: 0;
             overflow: hidden;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
-            flex-direction: column; /* İçeriği dikeyde sıralamak için */
+            flex-direction: column;
             justify-content: space-between;
             align-items: center;
             height: 100vh;
-            padding: 20px 0;
+            padding: 40px 0;
             box-sizing: border-box;
         }
 
@@ -29,52 +31,53 @@
             z-index: 0;
         }
 
-        /* --- ÖN PLAN (YAZI VE PASTA) --- */
-        
+        /* --- ÖN PLAN (YAZILAR) --- */
         .message-container {
             position: relative;
             z-index: 10;
             text-align: center;
             pointer-events: none;
-            margin-top: 20px; /* Üstten boşluk */
         }
 
         .message-title {
-            font-size: 32px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 45px;
             color: #fff;
-            font-weight: bold;
-            text-shadow: 0 0 10px #ff00de, 0 0 20px #ff00de;
+            text-shadow: 0 0 10px #ff00de, 0 0 20px #ff00de, 0 0 30px #ff00de;
             opacity: 0;
-            animation: textFadeIn 1s 0.5s ease-out forwards;
+            animation: textSlideDown 1s 0.5s ease-out forwards;
         }
 
         .message-name {
-            font-size: 48px;
+            font-family: 'Pacifico', cursive;
+            font-size: 65px;
             color: #ffeaa7;
-            font-weight: bold;
-            margin-top: 5px;
-            text-shadow: 0 0 10px #e17055, 0 0 20px #e17055;
+            margin-top: 10px;
+            text-shadow: 0 0 15px #e17055, 0 0 30px #e17055;
             opacity: 0;
-            animation: textFadeIn 1s 1.2s ease-out forwards;
+            animation: textSlideDown 1s 1.2s ease-out forwards;
         }
 
         .message-note {
-            font-size: 18px;
-            color: #ccc;
-            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            color: #ffffff;
+            font-weight: 300;
+            margin-top: 15px;
+            letter-spacing: 2px;
             opacity: 0;
-            animation: textFadeIn 1s 2s ease-out forwards;
+            animation: textSlideDown 1s 2s ease-out forwards;
         }
 
-        /* Pasta Kapsayıcı */
+        /* --- PASTA VE TABAK --- */
         .cake-wrapper {
             position: relative;
             z-index: 10;
-            margin-bottom: 50px; /* Alttan boşluk */
+            margin-bottom: 30px;
         }
 
         .plate {
-            width: 350px;
+            width: 380px;
             height: 15px;
             background: #dfe6e9;
             border-radius: 10px;
@@ -82,18 +85,18 @@
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+            box-shadow: 0 5px 25px rgba(255,255,255,0.1);
         }
 
         .cake {
-            width: 320px;
-            height: 120px;
+            width: 340px;
+            height: 130px;
             background: #6c5ce7;
             position: relative;
-            border-radius: 10px 10px 5px 5px;
+            border-radius: 15px 15px 5px 5px;
             display: flex;
             justify-content: center;
-            box-shadow: inset -10px 0 rgba(0,0,0,0.2);
+            box-shadow: inset -15px 0 rgba(0,0,0,0.2);
         }
 
         .icing {
@@ -101,32 +104,31 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 40px;
+            height: 45px;
             background: #a29bfe;
-            border-radius: 10px 10px 30px 30px;
+            border-radius: 15px 15px 40px 40px;
             z-index: 1;
         }
 
-        /* Mum Konteynırı (Mumları 58 adet sığdırmak için ayarlandı) */
+        /* --- 58 MUM KONTEYNIRI --- */
         .candle-container {
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            flex-wrap: wrap; /* Çok fazla mum olduğu için taşmayı önler */
             gap: 1px;
             position: absolute;
             top: -45px;
             z-index: 2;
-            width: 90%;
+            width: 95%;
         }
 
         .candle {
             background: linear-gradient(to bottom, #fd79a8, #e84393);
             border-radius: 2px;
-            width: 4px; /* 58 tane sığması için inceltildi */
+            width: 4px; /* 58 mumun sığması için inceltildi */
             height: 45px;
             position: relative;
-            transform: translateY(-600px);
+            transform: translateY(-800px);
             animation: dropIn 0.8s ease-out forwards;
         }
 
@@ -140,28 +142,35 @@
             background: #ff7675;
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             animation: flicker 0.2s infinite alternate;
-            box-shadow: 0 0 5px #ff7675;
+            box-shadow: 0 0 8px #ff7675;
         }
 
+        /* Animasyonlar */
         @keyframes dropIn { to { transform: translateY(0); } }
-        @keyframes textFadeIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        @keyframes textSlideDown { 
+            from { opacity: 0; transform: translateY(-30px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
         @keyframes flicker {
             from { transform: translateX(-50%) scale(1); opacity: 0.9; }
-            to { transform: translateX(-50%) scale(1.1); opacity: 1; }
+            to { transform: translateX(-50%) scale(1.15); opacity: 1; }
         }
 
     </style>
 </head>
 <body>
 
+    <!-- Arka Plan Havai Fişek -->
     <canvas id="canvas"></canvas>
 
+    <!-- Yazı Alanı -->
     <div class="message-container">
         <div class="message-title">Doğum Günün Kutlu Olsun</div>
         <div class="message-name">Canım Teyzemmmm</div>
         <div class="message-note">Seni Çooook Seviyorum</div>
     </div>
 
+    <!-- Pasta Alanı -->
     <div class="cake-wrapper">
         <div class="cake">
             <div class="icing"></div>
@@ -173,15 +182,14 @@
     </div>
 
     <script>
-        // --- 58 MUM OLUŞTURMA MANTIĞI ---
+        // --- 58 ADET MUMU OTOMATİK EKLEME ---
         const candleBox = document.getElementById('candles');
         const candleCount = 58;
 
         for (let i = 0; i < candleCount; i++) {
             const candle = document.createElement('div');
             candle.className = 'candle';
-            // Mumların sırayla düşmesi için gecikme ekliyoruz
-            candle.style.animationDelay = (i * 0.03) + 's'; 
+            candle.style.animationDelay = (i * 0.02) + 's'; // Mumlar tek tek dökülür
             
             const fire = document.createElement('div');
             fire.className = 'fire';
@@ -190,12 +198,12 @@
             candleBox.appendChild(candle);
         }
 
-        // --- HAVAİ FİŞEK MANTIĞI (SİZİN KODUNUZUN DEVAMI) ---
+        // --- HAVAİ FİŞEK KODLARI ---
         window.requestAnimFrame = (function(){
-          return  window.requestAnimationFrame       || 
-                  window.webkitRequestAnimationFrame || 
-                  window.mozRequestAnimationFrame    || 
-                  function( callback ){ window.setTimeout(callback, 1000 / 60); };
+          return window.requestAnimationFrame || 
+                 window.webkitRequestAnimationFrame || 
+                 window.mozRequestAnimationFrame || 
+                 function( callback ){ window.setTimeout(callback, 1000 / 60); };
         })();
 
         var canvas = document.getElementById( 'canvas' ),
@@ -205,26 +213,18 @@
             fireworks = [],
             particles = [],
             hue = 120,
-            limiterTotal = 5,
-            limiterTick = 0,
-            timerTotal = 20, 
-            timerTick = 0,
-            mousedown = false,
-            mx, my;
+            timerTotal = 25, 
+            timerTick = 0;
             
         canvas.width = cw;
         canvas.height = ch;
 
         function random( min, max ) { return Math.random() * ( max - min ) + min; }
-        function calculateDistance( p1x, p1y, p2x, p2y ) {
-            var xDistance = p1x - p2x, yDistance = p1y - p2y;
-            return Math.sqrt( Math.pow( xDistance, 2 ) + Math.pow( yDistance, 2 ) );
-        }
 
         function Firework( sx, sy, tx, ty ) {
             this.x = sx; this.y = sy; this.sx = sx; this.sy = sy;
             this.tx = tx; this.ty = ty;
-            this.distanceToTarget = calculateDistance( sx, sy, tx, ty );
+            this.distanceToTarget = Math.sqrt(Math.pow(sx - tx, 2) + Math.pow(sy - ty, 2));
             this.distanceTraveled = 0;
             this.coordinates = [];
             this.coordinateCount = 3;
@@ -233,16 +233,14 @@
             this.speed = 2;
             this.acceleration = 1.05;
             this.brightness = random( 50, 70 );
-            this.targetRadius = 1;
         }
 
         Firework.prototype.update = function( index ) {
             this.coordinates.pop();
             this.coordinates.unshift( [ this.x, this.y ] );
-            if( this.targetRadius < 8 ) { this.targetRadius += 0.3; } else { this.targetRadius = 1; }
             this.speed *= this.acceleration;
             var vx = Math.cos( this.angle ) * this.speed, vy = Math.sin( this.angle ) * this.speed;
-            this.distanceTraveled = calculateDistance( this.sx, this.sy, this.x + vx, this.y + vy );
+            this.distanceTraveled = Math.sqrt(Math.pow(this.sx - (this.x + vx), 2) + Math.pow(this.sy - (this.y + vy), 2));
             if( this.distanceTraveled >= this.distanceToTarget ) {
                 createParticles( this.tx, this.ty );
                 fireworks.splice( index, 1 );
@@ -267,7 +265,6 @@
             this.friction = 0.95;
             this.gravity = 1;
             this.hue = random( hue - 50, hue + 50 );
-            this.brightness = random( 50, 80 );
             this.alpha = 1;
             this.decay = random( 0.015, 0.03 );
         }
@@ -286,7 +283,7 @@
             ctx.beginPath();
             ctx.moveTo( this.coordinates[ this.coordinates.length - 1 ][ 0 ], this.coordinates[ this.coordinates.length - 1 ][ 1 ] );
             ctx.lineTo( this.x, this.y );
-            ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')';
+            ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, 50%, ' + this.alpha + ')';
             ctx.stroke();
         }
 
@@ -310,31 +307,16 @@
             while( i-- ) { particles[ i ].draw(); particles[ i ].update( i ); }
 
             if( timerTick >= timerTotal ) {
-                if( !mousedown ) {
-                    fireworks.push( new Firework( cw / 2, ch, random( 0, cw ), random( 0, ch / 2 ) ) );
-                    timerTick = 0;
-                }
+                fireworks.push( new Firework( cw / 2, ch, random( 0, cw ), random( 0, ch / 2 ) ) );
+                timerTick = 0;
             } else { timerTick++; }
-            
-            if( limiterTick >= limiterTotal ) {
-                if( mousedown ) {
-                    fireworks.push( new Firework( cw / 2, ch, mx, my ) );
-                    limiterTick = 0;
-                }
-            } else { limiterTick++; }
         }
 
         window.addEventListener('resize', function() {
-            cw = window.innerWidth;
-            ch = window.innerHeight;
-            canvas.width = cw;
-            canvas.height = ch;
+            cw = window.innerWidth; ch = window.innerHeight;
+            canvas.width = cw; canvas.height = ch;
         });
 
-        canvas.addEventListener( 'mousemove', function( e ) { mx = e.pageX - canvas.offsetLeft; my = e.pageY - canvas.offsetTop; });
-        canvas.addEventListener( 'mousedown', function( e ) { e.preventDefault(); mousedown = true; });
-        canvas.addEventListener( 'mouseup', function( e ) { e.preventDefault(); mousedown = false; });
-        
         loop();
     </script>
 </body>
