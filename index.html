@@ -110,22 +110,22 @@
             z-index: 1;
         }
 
-        /* --- 58 MUM KONTEYNIRI --- */
+        /* --- 8 MUM KONTEYNIRI --- */
         .candle-container {
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            gap: 1px;
+            gap: 15px; /* Mumlar arası boşluk eklendi */
             position: absolute;
             top: -45px;
             z-index: 2;
-            width: 95%;
+            width: 80%; /* Pastanın üzerine ortalamak için daraltıldı */
         }
 
         .candle {
             background: linear-gradient(to bottom, #fd79a8, #e84393);
-            border-radius: 2px;
-            width: 4px; /* 58 mumun sığması için inceltildi */
+            border-radius: 3px;
+            width: 12px; /* 8 mum için daha dolgun görünüm */
             height: 45px;
             position: relative;
             transform: translateY(-800px);
@@ -134,15 +134,15 @@
 
         .fire {
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 50%;
             transform: translateX(-50%);
-            width: 6px;
-            height: 10px;
+            width: 8px;
+            height: 14px;
             background: #ff7675;
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             animation: flicker 0.2s infinite alternate;
-            box-shadow: 0 0 8px #ff7675;
+            box-shadow: 0 0 10px #ff7675;
         }
 
         /* Animasyonlar */
@@ -166,8 +166,8 @@
     <!-- Yazı Alanı -->
     <div class="message-container">
         <div class="message-title">Doğum Günün Kutlu Olsun</div>
-        <div class="message-name">Canım Teyzemmmm</div>
-        <div class="message-note">Seni Çooook Seviyorum</div>
+        <div class="message-name">Duru Ece</div>
+        <div class="message-note">Seni Çok Seviyorum Azra Ablan</div>
     </div>
 
     <!-- Pasta Alanı -->
@@ -182,14 +182,14 @@
     </div>
 
     <script>
-        // --- 58 ADET MUMU OTOMATİK EKLEME ---
+        // --- 8 ADET MUMU OTOMATİK EKLEME ---
         const candleBox = document.getElementById('candles');
-        const candleCount = 58;
+        const candleCount = 8; // Sayı 8 olarak değiştirildi
 
         for (let i = 0; i < candleCount; i++) {
             const candle = document.createElement('div');
             candle.className = 'candle';
-            candle.style.animationDelay = (i * 0.02) + 's'; // Mumlar tek tek dökülür
+            candle.style.animationDelay = (i * 0.1) + 's'; // Düşme animasyonu süresi biraz yavaşlatıldı
             
             const fire = document.createElement('div');
             fire.className = 'fire';
