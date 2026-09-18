@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doğum Günün Kutlu Olsun</title>
-    <!-- Google Fonts: Şık yazı tipleri eklendi -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        /* --- GENEL AYARLAR --- */
         body {
-            background: #000;
+            background: #050510; /* Gece gökyüzü hissi veren çok koyu lacivert/siyah */
             margin: 0;
             overflow: hidden;
             font-family: 'Poppins', sans-serif;
@@ -18,7 +16,7 @@
             justify-content: space-between;
             align-items: center;
             height: 100vh;
-            padding: 40px 0;
+            padding: 5vh 0;
             box-sizing: border-box;
         }
 
@@ -31,129 +29,152 @@
             z-index: 0;
         }
 
-        /* --- ÖN PLAN (YAZILAR) --- */
         .message-container {
             position: relative;
             z-index: 10;
             text-align: center;
             pointer-events: none;
+            margin-top: 20px;
         }
 
         .message-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 45px;
-            color: #fff;
-            text-shadow: 0 0 10px #ff00de, 0 0 20px #ff00de, 0 0 30px #ff00de;
+            font-size: clamp(35px, 6vw, 65px); /* Ekran boyutuna göre duyarlı boyut */
+            color: #fff0f5; /* Hafif pembemsi beyaz */
+            text-shadow: 0 0 5px #fff, 0 0 15px #ff1493, 0 0 25px #ff1493, 0 0 40px #ff00a0;
             opacity: 0;
             animation: textSlideDown 1s 0.5s ease-out forwards;
         }
 
         .message-name {
             font-family: 'Pacifico', cursive;
-            font-size: 65px;
-            color: #ffeaa7;
-            margin-top: 10px;
-            text-shadow: 0 0 15px #e17055, 0 0 30px #e17055;
+            font-size: clamp(45px, 8vw, 80px);
+            color: #ffecd2; /* Şeftali/Turuncu tonları */
+            margin-top: 5px;
+            text-shadow: 0 0 5px #fff, 0 0 15px #ff8c00, 0 0 25px #ff7b00, 0 0 40px #ff5100;
             opacity: 0;
             animation: textSlideDown 1s 1.2s ease-out forwards;
         }
 
         .message-note {
             font-family: 'Poppins', sans-serif;
-            font-size: 22px;
+            font-size: clamp(20px, 4vw, 35px);
             color: #ffffff;
-            font-weight: 300;
+            font-weight: 400;
             margin-top: 15px;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             opacity: 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             animation: textSlideDown 1s 2s ease-out forwards;
         }
 
-        /* --- PASTA VE TABAK --- */
         .cake-wrapper {
             position: relative;
             z-index: 10;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
+            transform: scale(0.9); /* Küçük ekranlarda taşmaması için hafif küçültme */
         }
 
+        @media (max-width: 600px) {
+            .cake-wrapper { transform: scale(0.6); margin-bottom: 20px; }
+        }
+
+        /* Gümüş Görünümlü 3D Tabak */
         .plate {
-            width: 380px;
-            height: 15px;
-            background: #dfe6e9;
-            border-radius: 10px;
+            width: 460px;
+            height: 70px;
+            background: radial-gradient(ellipse at center, #f5f5f5 0%, #b0b5b9 60%, #6c757d 100%);
+            border-radius: 50%;
             position: absolute;
-            bottom: -15px;
+            bottom: -30px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 5px 25px rgba(255,255,255,0.1);
+            box-shadow: 
+                inset 0 -5px 15px rgba(255,255,255,0.6),
+                inset 0 10px 15px rgba(0,0,0,0.5),
+                0 20px 30px rgba(0,0,0,0.8);
+            border: 2px solid #e9ecef;
+            z-index: 1;
         }
 
+        /* Koyu Mor Pasta Gövdesi */
         .cake {
-            width: 340px;
-            height: 130px;
-            background: #6c5ce7;
+            width: 360px;
+            height: 170px; /* Daha uzun yapıldı */
+            background: linear-gradient(to right, #5e35b1, #7e57c2, #5e35b1); /* Silindirik gölge efekti */
             position: relative;
             border-radius: 15px 15px 5px 5px;
-            display: flex;
-            justify-content: center;
-            box-shadow: inset -15px 0 rgba(0,0,0,0.2);
+            box-shadow: inset -15px 0 20px rgba(0,0,0,0.3), inset 15px 0 20px rgba(255,255,255,0.1);
+            z-index: 2;
         }
 
+        /* Açık Mor Eriyen Krema (Icing) */
         .icing {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 45px;
-            background: #a29bfe;
-            border-radius: 15px 15px 40px 40px;
-            z-index: 1;
+            height: 50px;
+            background: #b388ff;
+            border-radius: 15px 15px 10px 10px;
+            z-index: 3;
+            box-shadow: inset 0 5px 10px rgba(255,255,255,0.4);
         }
 
-        /* --- 8 MUM KONTEYNIRI --- */
-        .candle-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 15px; /* Mumlar arası boşluk eklendi */
+        /* Krema Damlaları (Drips) */
+        .drip {
             position: absolute;
-            top: -45px;
-            z-index: 2;
-            width: 80%; /* Pastanın üzerine ortalamak için daraltıldı */
+            background: #b388ff;
+            border-radius: 0 0 50px 50px;
+            top: 40px; /* Kremanın altından başlar */
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
 
+        .candle-container {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            z-index: 4;
+        }
+
+        /* Pembe Mumlar */
         .candle {
-            background: linear-gradient(to bottom, #fd79a8, #e84393);
+            background: linear-gradient(to right, #ff80ab, #ff4081, #ff80ab);
             border-radius: 3px;
-            width: 12px; /* 28 mum için daha dolgun görünüm */
+            width: 8px; /* İnce ve zarif mumlar */
             height: 45px;
-            position: relative;
-            transform: translateY(-800px);
-            animation: dropIn 0.8s ease-out forwards;
+            position: absolute;
+            transform: translateY(-1000px);
+            animation: dropIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            box-shadow: inset -2px 0 3px rgba(0,0,0,0.2);
         }
 
+        /* Ateş Efekti */
         .fire {
             position: absolute;
-            top: -14px;
+            top: -16px;
             left: 50%;
             transform: translateX(-50%);
             width: 8px;
-            height: 14px;
-            background: #ff7675;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: flicker 0.2s infinite alternate;
-            box-shadow: 0 0 10px #ff7675;
+            height: 16px;
+            background: #ffc107;
+            border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+            animation: flicker 0.15s infinite alternate;
+            box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff9800, 0 0 30px #ff5722;
         }
 
-        /* Animasyonlar */
         @keyframes dropIn { to { transform: translateY(0); } }
+        
         @keyframes textSlideDown { 
-            from { opacity: 0; transform: translateY(-30px); } 
-            to { opacity: 1; transform: translateY(0); } 
+            from { opacity: 0; transform: translateY(-30px); filter: brightness(0.5); } 
+            to { opacity: 1; transform: translateY(0); filter: brightness(1); } 
         }
+        
         @keyframes flicker {
-            from { transform: translateX(-50%) scale(1); opacity: 0.9; }
-            to { transform: translateX(-50%) scale(1.15); opacity: 1; }
+            0% { transform: translateX(-50%) scale(0.9); opacity: 0.9; background: #ffc107; }
+            100% { transform: translateX(-50%) scale(1.1); opacity: 1; background: #ffeb3b; }
         }
 
     </style>
@@ -173,23 +194,51 @@
     <!-- Pasta Alanı -->
     <div class="cake-wrapper">
         <div class="cake">
-            <div class="icing"></div>
+            <!-- Açık Mor Krema ve Damlaları -->
+            <div class="icing">
+                <!-- Manuel olarak konumlandırılmış damlalar -->
+                <div class="drip" style="left: 15px; height: 60px; width: 22px;"></div>
+                <div class="drip" style="left: 45px; height: 40px; width: 28px;"></div>
+                <div class="drip" style="left: 85px; height: 75px; width: 20px;"></div>
+                <div class="drip" style="left: 120px; height: 50px; width: 30px;"></div>
+                <div class="drip" style="left: 165px; height: 85px; width: 25px;"></div>
+                <div class="drip" style="left: 210px; height: 45px; width: 22px;"></div>
+                <div class="drip" style="left: 245px; height: 65px; width: 28px;"></div>
+                <div class="drip" style="left: 290px; height: 35px; width: 20px;"></div>
+                <div class="drip" style="left: 325px; height: 55px; width: 22px;"></div>
+            </div>
+            
             <div id="candles" class="candle-container">
-                <!-- Mumlar JS ile buraya gelecek -->
+                <!-- Mumlar JS ile buraya eklenecek -->
             </div>
         </div>
         <div class="plate"></div>
     </div>
 
     <script>
-        // --- 28 ADET MUMU OTOMATİK EKLEME ---
         const candleBox = document.getElementById('candles');
-        const candleCount = 28; // Sayı 28 olarak değiştirildi
+        const candleCount = 28; // İstenilen mum sayısı
+        const cakeWidth = 360;
 
         for (let i = 0; i < candleCount; i++) {
             const candle = document.createElement('div');
             candle.className = 'candle';
-            candle.style.animationDelay = (i * 0.1) + 's'; // Düşme animasyonu süresi biraz yavaşlatıldı
+            
+            // Animasyon gecikmesini ayarlama
+            candle.style.animationDelay = (i * 0.04) + 's';
+            
+            // Mumları yatayda orantılı dağıtma (biraz kenar boşluğu bırakarak)
+            const padding = 20;
+            const availableWidth = cakeWidth - (padding * 2);
+            const percentage = i / (candleCount - 1); // 0 ile 1 arası
+            const leftPos = padding + (percentage * availableWidth);
+            
+            // Mumları hafif bir kavis (yay) oluşturacak şekilde dikeyde yerleştirme
+            // Math.sin kullanarak ortadakileri biraz daha önde (aşağıda) gösterelim
+            const curve = Math.sin(percentage * Math.PI) * 12; // Max 12px kavis
+            
+            candle.style.left = leftPos + 'px';
+            candle.style.bottom = curve + 'px'; // Kavis efekti
             
             const fire = document.createElement('div');
             fire.className = 'fire';
@@ -198,7 +247,6 @@
             candleBox.appendChild(candle);
         }
 
-        // --- HAVAİ FİŞEK KODLARI ---
         window.requestAnimFrame = (function(){
           return window.requestAnimationFrame || 
                  window.webkitRequestAnimationFrame || 
@@ -212,8 +260,7 @@
             ch = window.innerHeight,
             fireworks = [],
             particles = [],
-            hue = 120,
-            timerTotal = 25, 
+            timerTotal = 20, // Ateşleme sıklığı
             timerTick = 0;
             
         canvas.width = cw;
@@ -233,6 +280,8 @@
             this.speed = 2;
             this.acceleration = 1.05;
             this.brightness = random( 50, 70 );
+            // Havai fişek rengini rastgele ama parlak renklerden seç (Görseldeki gibi Pembe, Mavi, Altın)
+            this.targetHue = random( 0, 360 );
         }
 
         Firework.prototype.update = function( index ) {
@@ -242,7 +291,7 @@
             var vx = Math.cos( this.angle ) * this.speed, vy = Math.sin( this.angle ) * this.speed;
             this.distanceTraveled = Math.sqrt(Math.pow(this.sx - (this.x + vx), 2) + Math.pow(this.sy - (this.y + vy), 2));
             if( this.distanceTraveled >= this.distanceToTarget ) {
-                createParticles( this.tx, this.ty );
+                createParticles( this.tx, this.ty, this.targetHue );
                 fireworks.splice( index, 1 );
             } else { this.x += vx; this.y += vy; }
         }
@@ -251,11 +300,11 @@
             ctx.beginPath();
             ctx.moveTo( this.coordinates[ this.coordinates.length - 1 ][ 0 ], this.coordinates[ this.coordinates.length - 1 ][ 1 ] );
             ctx.lineTo( this.x, this.y );
-            ctx.strokeStyle = 'hsl(' + hue + ', 100%, ' + this.brightness + '%)';
+            ctx.strokeStyle = 'hsl(' + this.targetHue + ', 100%, ' + this.brightness + '%)';
             ctx.stroke();
         }
 
-        function Particle( x, y ) {
+        function Particle( x, y, hue ) {
             this.x = x; this.y = y;
             this.coordinates = [];
             this.coordinateCount = 5;
@@ -264,7 +313,9 @@
             this.speed = random( 1, 10 );
             this.friction = 0.95;
             this.gravity = 1;
-            this.hue = random( hue - 50, hue + 50 );
+            // Verilen hedefe yakın rastgele tonlar
+            this.hue = random( hue - 30, hue + 30 );
+            this.brightness = random( 50, 80 );
             this.alpha = 1;
             this.decay = random( 0.015, 0.03 );
         }
@@ -283,20 +334,21 @@
             ctx.beginPath();
             ctx.moveTo( this.coordinates[ this.coordinates.length - 1 ][ 0 ], this.coordinates[ this.coordinates.length - 1 ][ 1 ] );
             ctx.lineTo( this.x, this.y );
-            ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, 50%, ' + this.alpha + ')';
+            ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')';
             ctx.stroke();
         }
 
-        function createParticles( x, y ) {
-            var particleCount = 30; 
-            while( particleCount-- ) { particles.push( new Particle( x, y ) ); }
+        function createParticles( x, y, hue ) {
+            var particleCount = 40; 
+            while( particleCount-- ) { particles.push( new Particle( x, y, hue ) ); }
         }
 
         function loop() {
             requestAnimFrame( loop );
-            hue += 0.5;
+            
+            // Arkada yavaşça kaybolan gölgeler efekti (Daha karanlık gökyüzü)
             ctx.globalCompositeOperation = 'destination-out';
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'; 
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)'; 
             ctx.fillRect( 0, 0, cw, ch );
             ctx.globalCompositeOperation = 'lighter';
             
@@ -307,7 +359,9 @@
             while( i-- ) { particles[ i ].draw(); particles[ i ].update( i ); }
 
             if( timerTick >= timerTotal ) {
-                fireworks.push( new Firework( cw / 2, ch, random( 0, cw ), random( 0, ch / 2 ) ) );
+                // Rastgele konumlardan gökyüzüne havai fişek fırlat
+                fireworks.push( new Firework( cw / 2, ch, random( 0, cw ), random( 0, ch / 1.5 ) ) );
+                fireworks.push( new Firework( random(0, cw), ch, random( 0, cw ), random( 0, ch / 1.5 ) ) );
                 timerTick = 0;
             } else { timerTick++; }
         }
@@ -317,6 +371,7 @@
             canvas.width = cw; canvas.height = ch;
         });
 
+        // Başlat
         loop();
     </script>
 </body>
