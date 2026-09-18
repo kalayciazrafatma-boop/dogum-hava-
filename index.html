@@ -13,10 +13,11 @@
             font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center; /* Yazı ve pastayı ekranın ortasında birleştirir */
             align-items: center;
             height: 100vh;
-            padding: 5vh 0;
+            padding: 0;
+            gap: 75px; /* Yazının alt kısmı ile mumların alevleri arasına çok ince bir boşluk bırakır */
             box-sizing: border-box;
         }
 
@@ -34,7 +35,7 @@
             z-index: 10;
             text-align: center;
             pointer-events: none;
-            margin-top: 20px;
+            /* Önceki manuel boşluklar kaldırıldı, yerleşimi artık body gap ile yapıyoruz */
         }
 
         .message-title {
@@ -71,12 +72,11 @@
         .cake-wrapper {
             position: relative;
             z-index: 10;
-            margin-bottom: 50px;
             transform: scale(0.9); /* Küçük ekranlarda taşmaması için hafif küçültme */
         }
 
         @media (max-width: 600px) {
-            .cake-wrapper { transform: scale(0.6); margin-bottom: 20px; }
+            .cake-wrapper { transform: scale(0.6); } /* Mobil için boşluklar flexbox'a bırakıldı */
         }
 
         /* Gümüş Görünümlü 3D Tabak */
